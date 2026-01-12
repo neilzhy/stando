@@ -9,6 +9,7 @@
     "url": "https://github.com/neilzhy/stando"
   },
   "license": "MIT",
+  "icon": "images/stando.png",
   "engines": {
     "vscode": "^1.74.0"
   },
