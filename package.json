@@ -2,7 +2,7 @@
   "name": "stando",
   "displayName": "Stando",
   "description": "Remind you to stand up and take a break regularly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "yingzhang",
   "repository": {
     "type": "git",

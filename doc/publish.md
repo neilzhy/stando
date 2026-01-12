@@ -27,7 +27,7 @@
   "name": "stando",
   "displayName": "Stando",
   "publisher": "yingzhang",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "images/stando.png",
   ...
 }
@@ -45,7 +45,7 @@ cd /path/to/stando
 npm run package
 ```
 
-打包成功后会生成 `stando-1.0.0.vsix` 文件。
+打包成功后会生成 `stando-1.0.1.vsix` 文件。
 
 ### 4. 上传插件
 

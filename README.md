@@ -1,6 +1,6 @@
 # Stando
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/neilzhy/stando)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/neilzhy/stando)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![VSCode](https://img.shields.io/badge/VSCode-1.74.0+-orange.svg)](https://code.visualstudio.com/)
 
@@ -61,7 +61,7 @@ npm run package
 
 5. Install the extension:
 ```bash
-code --install-extension stando-1.0.0.vsix
+code --install-extension stando-1.0.1.vsix
 ```
 
 6. Reload VSCode window (`Ctrl+Shift+P` → `Reload Window`)

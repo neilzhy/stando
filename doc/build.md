@@ -31,7 +31,7 @@ npm run package
 
 ### 2.5 安装到 VSCode
 ```bash
-code --install-extension stando-1.0.0.vsix
+code --install-extension stando-1.0.1.vsix
 ```
 
 ## 3. 开发命令
@@ -133,7 +133,7 @@ npm run watch
 npm run package
 
 # 安装
-code --install-extension stando-1.0.0.vsix
+code --install-extension stando-1.0.1.vsix
 
 # 重新加载 VSCode 窗口
 # Ctrl+Shift+P → Reload Window
