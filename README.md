@@ -1,12 +1,10 @@
 # Stando
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/NeilZhy/stando)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/neilzhy/stando)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![VSCode](https://img.shields.io/badge/VSCode-1.74.0+-orange.svg)](https://code.visualstudio.com/)
 
 A VSCode extension that reminds you to stand up and take a break regularly, helping prevent health issues caused by prolonged sitting.
-
-一款 VSCode 插件，定时提醒你站立休息，帮助预防久坐带来的健康问题。
 
 > **Stando** = **Stand** + **Do** - Stand up and do it!
 
@@ -33,7 +31,7 @@ A VSCode extension that reminds you to stand up and take a break regularly, help
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/NeilZhy/stando.git
+git clone https://github.com/neilzhy/stando.git
 cd stando
 ```
 

@@ -10,7 +10,7 @@
 
 ### 2.1 克隆代码
 ```bash
-git clone https://github.com/NeilZhy/stando.git
+git clone https://github.com/neilzhy/stando.git
 cd stando
 ```
 
