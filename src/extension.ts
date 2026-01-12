@@ -97,7 +97,8 @@ export function activate(context: vscode.ExtensionContext) {
   const configChangeListener = vscode.workspace.onDidChangeConfiguration((e) => {
     if (e.affectsConfiguration('stando')) {
       statusBar.update();
-      if (!storage.isPaused()) {
+      // Only restart reminder when interval changes
+      if (e.affectsConfiguration('stando.interval') && !storage.isPaused()) {
         reminder.restart();
       }
     }
