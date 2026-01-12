@@ -90,9 +90,10 @@ export class Reminder {
 
     const config = this.getConfig();
 
-    // Show reminder notification
+    // Show reminder notification (modal to prevent auto-dismiss)
     const selection = await vscode.window.showInformationMessage(
       config.message,
+      { modal: true },
       'Stand Up',
       'Snooze 5min',
       'Dismiss'
