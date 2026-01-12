@@ -27,6 +27,15 @@ A VSCode extension that reminds you to stand up and take a break regularly, help
 
 ## Installation
 
+### From VSCode Marketplace (Recommended)
+
+1. Open VSCode
+2. Press `Ctrl+Shift+X` to open the Extensions panel
+3. Search for `Stando`
+4. Click **Install**
+
+Or visit: https://marketplace.visualstudio.com/items?itemName=yingzhang.stando
+
 ### From Source (Local Build)
 
 1. Clone the repository:
