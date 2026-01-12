@@ -1,0 +1,29 @@
+appId: com.stando.desktop
+productName: Stando
+copyright: Copyright © 2026 yingzhang
+directories:
+  output: out/release
+  buildResources: resources
+
+files:
+  - out/main
+  - out/preload
+  - out/renderer
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: resources/icon.ico
+  artifactName: ${productName}-Setup-${version}.${ext}
+  sign: null
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Stando
+  installerIcon: resources/icon.ico
+  uninstallerIcon: resources/icon.ico

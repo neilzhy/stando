@@ -1,0 +1,31 @@
+{
+  "name": "stando-desktop",
+  "version": "1.0.0",
+  "description": "Stand up reminder desktop application",
+  "main": "out/main/index.js",
+  "author": "yingzhang",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "build:win": "set CSC_IDENTITY_AUTO_DISCOVERY=false && npm run build && electron-builder --win --x64"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "cross-env": "^10.1.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.0",
+    "electron-vite": "^2.3.0",
+    "element-plus": "^2.5.0",
+    "pinia": "^2.1.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.0"
+  }
+}
