@@ -1,0 +1,110 @@
+{
+  "name": "stando",
+  "displayName": "Stando",
+  "description": "Remind you to stand up and take a break regularly",
+  "version": "1.0.0",
+  "publisher": "zhangying",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeilZhy/stando"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "stando.pause",
+        "title": "Stando: Pause"
+      },
+      {
+        "command": "stando.resume",
+        "title": "Stando: Resume"
+      },
+      {
+        "command": "stando.standUp",
+        "title": "Stando: Stand Up"
+      },
+      {
+        "command": "stando.sitDown",
+        "title": "Stando: Sit Down"
+      },
+      {
+        "command": "stando.showStatistics",
+        "title": "Stando: Show Statistics"
+      }
+    ],
+    "configuration": {
+      "title": "Stando",
+      "properties": {
+        "stando.interval": {
+          "type": "number",
+          "default": 60,
+          "minimum": 1,
+          "maximum": 480,
+          "description": "Reminder interval in minutes"
+        },
+        "stando.displayMode": {
+          "type": "string",
+          "default": "silent",
+          "enum": [
+            "countdown",
+            "progress",
+            "lastTime",
+            "silent"
+          ],
+          "enumDescriptions": [
+            "Show countdown to next reminder",
+            "Show progress bar",
+            "Show last stand time",
+            "Only show icon"
+          ],
+          "description": "Status bar display mode"
+        },
+        "stando.message": {
+          "type": "string",
+          "default": "Time to stand up and stretch!",
+          "description": "Reminder message"
+        },
+        "stando.dndEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Do Not Disturb mode"
+        },
+        "stando.dndStartTime": {
+          "type": "string",
+          "default": "12:00",
+          "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+          "description": "Do Not Disturb start time (HH:MM)"
+        },
+        "stando.dndEndTime": {
+          "type": "string",
+          "default": "13:00",
+          "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+          "description": "Do Not Disturb end time (HH:MM)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.74.0",
+    "esbuild": "^0.19.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.22.0"
+  }
+}
