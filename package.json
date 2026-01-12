@@ -3,7 +3,7 @@
   "displayName": "Stando",
   "description": "Remind you to stand up and take a break regularly",
   "version": "1.0.0",
-  "publisher": "zhangying",
+  "publisher": "yingzhang",
   "repository": {
     "type": "git",
     "url": "https://github.com/neilzhy/stando"

@@ -172,6 +172,6 @@ npm run build
 
 ### Q4: 如何卸载插件
 ```bash
-code --uninstall-extension zhangying.stando
+code --uninstall-extension yingzhang.stando
 ```
 或在 VSCode 扩展面板中点击卸载。
