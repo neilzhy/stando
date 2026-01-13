@@ -20,6 +20,7 @@ export function setupIpcHandlers(
       formatted: statistics.getFormattedSummary(),
       currentState: storage.getCurrentState(),
       standStart: storage.getCurrentStandStart(),
+      lastReminderTime: storage.getLastReminderTime(),
     };
   });
 

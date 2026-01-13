@@ -69,6 +69,9 @@ app.whenReady().then(() => {
   // Start reminder timer
   reminder.start();
 
+  // Create floating widget
+  WindowManager.createFloatingWidget();
+
   console.log('Stando Desktop started successfully');
 });
 
