@@ -15,12 +15,20 @@ export function setupIpcHandlers(
 ): void {
   // Get statistics
   ipcMain.handle(IPC_CHANNELS.GET_STATISTICS, async () => {
+    const todayStats = storage.getTodayStatistics();
+    const standRecords = todayStats.standRecords || [];
+    const lastStandTime = standRecords.length > 0
+      ? standRecords[standRecords.length - 1].endTime
+      : undefined;
+
     return {
       summary: statistics.getTodaySummary(),
       formatted: statistics.getFormattedSummary(),
       currentState: storage.getCurrentState(),
       standStart: storage.getCurrentStandStart(),
       lastReminderTime: storage.getLastReminderTime(),
+      snoozeEndTime: storage.getSnoozeEndTime(),
+      lastStandTime,
     };
   });
 

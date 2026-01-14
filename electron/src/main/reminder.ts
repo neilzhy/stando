@@ -21,21 +21,31 @@ export class Reminder {
 
   private setupIpcHandlers(): void {
     // Listen for reminder action from renderer
-    ipcMain.on(IPC_CHANNELS.REMINDER_ACTION, (_event, action: string) => {
+    ipcMain.on(IPC_CHANNELS.REMINDER_ACTION, async (_event, action: string) => {
       WindowManager.closeReminderWindow();
 
       if (action === 'stand-up') {
+        // Clear snooze and update lastReminderTime
+        await this.storage.setSnoozeEndTime(undefined);
+        await this.storage.setLastReminderTime(Date.now());
         this.onStandUp();
       } else if (action === 'snooze') {
-        // Snooze for 5 minutes
+        // Set snooze end time (5 minutes from now)
+        const snoozeEndTime = Date.now() + 5 * 60 * 1000;
+        await this.storage.setSnoozeEndTime(snoozeEndTime);
+
+        // Schedule reminder after snooze
         if (this.reminderTimer) {
           clearTimeout(this.reminderTimer);
         }
-        this.reminderTimer = setTimeout(() => {
+        this.reminderTimer = setTimeout(async () => {
+          await this.storage.setSnoozeEndTime(undefined);
           this.triggerReminder();
         }, 5 * 60 * 1000);
       } else {
-        // Dismissed, schedule next reminder
+        // Dismissed - clear snooze and update lastReminderTime
+        await this.storage.setSnoozeEndTime(undefined);
+        await this.storage.setLastReminderTime(Date.now());
         this.scheduleNextReminder();
       }
     });
@@ -102,10 +112,8 @@ export class Reminder {
     const pluginConfig = this.config.getConfig();
 
     // Create reminder window
+    // Note: lastReminderTime will be updated when user clicks a button
     WindowManager.createReminderWindow(pluginConfig.message);
-
-    // Update last reminder time
-    await this.storage.setLastReminderTime(Date.now());
   }
 
   restart(): void {

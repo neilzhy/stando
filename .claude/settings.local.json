@@ -4,7 +4,12 @@
       "Bash(npm install)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(npm run build:win:*)"
+      "Bash(npm run build:win:*)",
+      "Bash(python3:*)",
+      "Bash(pip install:*)",
+      "Bash(where:*)",
+      "Bash(C:/Users/18504/AppData/Local/Microsoft/WindowsApps/python.exe -m pip install:*)",
+      "Bash(node -e:*)"
     ]
   }
 }

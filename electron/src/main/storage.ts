@@ -97,6 +97,15 @@ export class Storage {
     await this.save();
   }
 
+  getSnoozeEndTime(): number | undefined {
+    return this.data.snoozeEndTime;
+  }
+
+  async setSnoozeEndTime(time: number | undefined): Promise<void> {
+    this.data.snoozeEndTime = time;
+    await this.save();
+  }
+
   getCurrentStandStart(): number | undefined {
     return this.data.currentStandStart;
   }

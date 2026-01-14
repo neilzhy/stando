@@ -28,6 +28,7 @@ export interface StorageData {
   lastReminderTime?: number;       // Timestamp of last reminder
   isPaused: boolean;               // Whether reminder is paused
   sessionStartTime?: number;       // When the current sitting session started
+  snoozeEndTime?: number;          // Timestamp when snooze ends
 }
 
 // Plugin configuration

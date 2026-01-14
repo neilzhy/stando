@@ -40,7 +40,12 @@ export class TrayManager {
     this.intervalMs = pluginConfig.interval * 60 * 1000;
 
     // Create tray icon
-    const iconPath = path.join(__dirname, '../../resources/icon.png');
+    // In development: use resources folder relative to app root
+    // In production: use resources folder in app.asar or extraResources
+    const isDev = !app.isPackaged;
+    const iconPath = isDev
+      ? path.join(app.getAppPath(), 'resources', 'icon.ico')
+      : path.join(process.resourcesPath, 'icon.ico');
     const icon = nativeImage.createFromPath(iconPath);
     this.tray = new Tray(icon.resize({ width: 16, height: 16 }));
 
@@ -49,14 +54,14 @@ export class TrayManager {
   }
 
   private setupTray(): void {
-    // Left click behavior
+    // Left click: show floating widget
     this.tray.on('click', () => {
-      if (this.storage.getCurrentState() === 'standing') {
-        // End standing when click托盘 while standing
-        this.onSitDown();
+      const widget = WindowManager.getFloatingWidget();
+      if (widget && !widget.isDestroyed()) {
+        widget.show();
+        widget.focus();
       } else {
-        // Show menu otherwise
-        this.showMenu();
+        WindowManager.createFloatingWidget();
       }
     });
 

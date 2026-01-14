@@ -18,9 +18,9 @@ export class WindowManager {
 
     this.reminderWindow = new BrowserWindow({
       width: 400,
-      height: 250,
+      height: 320,
       x: Math.floor((width - 400) / 2),
-      y: Math.floor((height - 250) / 2),
+      y: Math.floor((height - 320) / 2),
       frame: false,
       alwaysOnTop: true,
       skipTaskbar: true,
@@ -48,6 +48,8 @@ export class WindowManager {
     this.reminderWindow.once('ready-to-show', () => {
       this.reminderWindow?.show();
       this.reminderWindow?.focus();
+      // Ensure window stays on top with highest level
+      this.reminderWindow?.setAlwaysOnTop(true, 'screen-saver');
       // Send message to renderer
       this.reminderWindow?.webContents.send('reminder-message', message);
     });

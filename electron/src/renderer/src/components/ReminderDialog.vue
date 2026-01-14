@@ -1,8 +1,7 @@
 <template>
   <div class="reminder-dialog">
     <div class="icon">⏰</div>
-    <h1 class="title">Time to stand up!</h1>
-    <p class="message">{{ message }}</p>
+    <h1 class="title">{{ message }}</h1>
 
     <div class="buttons">
       <button @click="handleStandUp" class="btn-primary">
@@ -52,14 +51,14 @@ const handleDismiss = () => {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 20px;
+  padding: 16px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
 
 .icon {
-  font-size: 64px;
-  margin-bottom: 16px;
+  font-size: 48px;
+  margin-bottom: 12px;
   animation: bounce 1s ease infinite;
 }
 
@@ -73,29 +72,23 @@ const handleDismiss = () => {
 }
 
 .title {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.message {
-  font-size: 18px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   text-align: center;
-  opacity: 0.95;
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
   max-width: 280px;
 }
 
 button {
-  padding: 14px 24px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 15px;
   border: none;
   border-radius: 8px;
   cursor: pointer;

@@ -91,6 +91,8 @@ async function handleSitDown(): Promise<void> {
   }
 
   await storage.endStanding();
+  // Update lastReminderTime so countdown starts from now
+  await storage.setLastReminderTime(Date.now());
   reminder.restart();
   tray.resetTimer();
   tray.updateTray();
