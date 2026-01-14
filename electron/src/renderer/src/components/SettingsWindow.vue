@@ -111,7 +111,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, toRaw } from 'vue';
 
 interface PluginConfig {
   interval: number;
@@ -143,6 +143,7 @@ const loadConfig = async () => {
     loading.value = false;
   } catch (error) {
     console.error('Failed to load config:', error);
+    loading.value = false;
   }
 };
 
@@ -152,7 +153,9 @@ const handleSave = async () => {
   saveError.value = false;
 
   try {
-    await window.electronAPI.updateConfig(config.value);
+    // Use toRaw() to convert Vue reactive proxy to plain object for IPC
+    const plainConfig = toRaw(config.value);
+    await window.electronAPI.updateConfig(plainConfig);
     saveMessage.value = '✓ Settings saved successfully!';
     setTimeout(() => {
       saveMessage.value = '';
