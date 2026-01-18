@@ -16,9 +16,6 @@
     <div v-else class="time-display">{{ displayTime }}</div>
 
     <div class="label">{{ label }}</div>
-
-    <!-- Click hint -->
-    <div class="click-hint" v-if="isStanding">Click to sit</div>
   </div>
 </template>
 
