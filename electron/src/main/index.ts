@@ -80,7 +80,10 @@ async function handleStandUp(): Promise<void> {
     return;
   }
 
+  // Clear snooze if active
+  await storage.setSnoozeEndTime(undefined);
   await storage.startStanding();
+  reminder.stop();
   tray.resetTimer();
   tray.updateTray();
 }
