@@ -6,6 +6,7 @@ export class WindowManager {
   private static statisticsWindow: BrowserWindow | null = null;
   private static settingsWindow: BrowserWindow | null = null;
   private static floatingWidget: BrowserWindow | null = null;
+  private static offWorkReminderWindow: BrowserWindow | null = null;
 
   static createReminderWindow(message: string): BrowserWindow {
     // Close existing reminder window if any
@@ -215,6 +216,64 @@ export class WindowManager {
     return this.floatingWidget;
   }
 
+  static createOffWorkReminderWindow(message: string): BrowserWindow {
+    // Close existing off-work reminder window if any
+    if (this.offWorkReminderWindow && !this.offWorkReminderWindow.isDestroyed()) {
+      this.offWorkReminderWindow.close();
+    }
+
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
+    this.offWorkReminderWindow = new BrowserWindow({
+      width: 400,
+      height: 320,
+      x: Math.floor((width - 400) / 2),
+      y: Math.floor((height - 320) / 2),
+      frame: false,
+      alwaysOnTop: true,
+      skipTaskbar: true,
+      resizable: false,
+      minimizable: false,
+      maximizable: false,
+      fullscreenable: false,
+      show: false,
+      webPreferences: {
+        preload: path.join(__dirname, '../preload/index.js'),
+        nodeIntegration: false,
+        contextIsolation: true,
+      }
+    });
+
+    // Load off-work reminder page
+    if (process.env.ELECTRON_RENDERER_URL) {
+      this.offWorkReminderWindow.loadURL(`${process.env.ELECTRON_RENDERER_URL}#/off-work-reminder`);
+    } else {
+      this.offWorkReminderWindow.loadFile(path.join(__dirname, '../renderer/index.html'), {
+        hash: '/off-work-reminder'
+      });
+    }
+
+    this.offWorkReminderWindow.once('ready-to-show', () => {
+      this.offWorkReminderWindow?.show();
+      this.offWorkReminderWindow?.focus();
+      this.offWorkReminderWindow?.setAlwaysOnTop(true, 'screen-saver');
+      // Send message to renderer
+      this.offWorkReminderWindow?.webContents.send('off-work-reminder-message', message);
+    });
+
+    this.offWorkReminderWindow.on('closed', () => {
+      this.offWorkReminderWindow = null;
+    });
+
+    return this.offWorkReminderWindow;
+  }
+
+  static closeOffWorkReminderWindow(): void {
+    if (this.offWorkReminderWindow && !this.offWorkReminderWindow.isDestroyed()) {
+      this.offWorkReminderWindow.close();
+    }
+  }
+
   static destroyAll(): void {
     if (this.reminderWindow && !this.reminderWindow.isDestroyed()) {
       this.reminderWindow.destroy();
@@ -227,6 +286,9 @@ export class WindowManager {
     }
     if (this.floatingWidget && !this.floatingWidget.isDestroyed()) {
       this.floatingWidget.destroy();
+    }
+    if (this.offWorkReminderWindow && !this.offWorkReminderWindow.isDestroyed()) {
+      this.offWorkReminderWindow.destroy();
     }
   }
 }

@@ -14,6 +14,10 @@ export class Config {
         dndEnabled: false,
         dndStartTime: '12:00',
         dndEndTime: '13:00',
+        offWorkEnabled: false,
+        offWorkTime: '21:00',
+        offWorkDuration: 60,
+        offWorkMessage: '该下班了！注意休息 💼',
       }
     });
   }
@@ -26,6 +30,10 @@ export class Config {
       dndEnabled: this.store.get('dndEnabled', false),
       dndStartTime: this.store.get('dndStartTime', '12:00'),
       dndEndTime: this.store.get('dndEndTime', '13:00'),
+      offWorkEnabled: this.store.get('offWorkEnabled', false),
+      offWorkTime: this.store.get('offWorkTime', '21:00'),
+      offWorkDuration: this.store.get('offWorkDuration', 60),
+      offWorkMessage: this.store.get('offWorkMessage', '该下班了！注意休息 💼'),
     };
   }
 
@@ -47,6 +55,18 @@ export class Config {
     }
     if (config.dndEndTime !== undefined) {
       this.store.set('dndEndTime', config.dndEndTime);
+    }
+    if (config.offWorkEnabled !== undefined) {
+      this.store.set('offWorkEnabled', config.offWorkEnabled);
+    }
+    if (config.offWorkTime !== undefined) {
+      this.store.set('offWorkTime', config.offWorkTime);
+    }
+    if (config.offWorkDuration !== undefined) {
+      this.store.set('offWorkDuration', config.offWorkDuration);
+    }
+    if (config.offWorkMessage !== undefined) {
+      this.store.set('offWorkMessage', config.offWorkMessage);
     }
   }
 }

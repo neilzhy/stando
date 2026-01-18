@@ -6,12 +6,14 @@ import { TrayManager } from './tray';
 import { Reminder } from './reminder';
 import { WindowManager } from './windows';
 import { setupIpcHandlers } from './ipc-handlers';
+import { OffWorkReminder } from './off-work-reminder';
 
 let storage: Storage;
 let statistics: Statistics;
 let config: Config;
 let tray: TrayManager;
 let reminder: Reminder;
+let offWorkReminder: OffWorkReminder;
 
 // Prevent app from quitting when all windows are closed
 app.on('window-all-closed', (e) => {
@@ -25,6 +27,9 @@ app.on('before-quit', () => {
   }
   if (reminder) {
     reminder.dispose();
+  }
+  if (offWorkReminder) {
+    offWorkReminder.dispose();
   }
   WindowManager.destroyAll();
 });
@@ -68,6 +73,12 @@ app.whenReady().then(() => {
 
   // Start reminder timer
   reminder.start();
+
+  // Initialize off-work reminder
+  offWorkReminder = new OffWorkReminder(config);
+
+  // Start off-work reminder
+  offWorkReminder.start();
 
   // Create floating widget
   WindowManager.createFloatingWidget();

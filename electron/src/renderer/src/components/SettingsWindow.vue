@@ -89,6 +89,53 @@
           </div>
         </div>
 
+        <div class="section">
+          <h2>⏰ 下班提醒</h2>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" v-model="config.offWorkEnabled" />
+              <span>启用下班提醒</span>
+            </label>
+          </div>
+
+          <div v-if="config.offWorkEnabled">
+            <div class="form-group">
+              <label for="offWorkTime">下班时间</label>
+              <input
+                id="offWorkTime"
+                type="time"
+                v-model="config.offWorkTime"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="offWorkDuration">提醒时长（分钟）</label>
+              <input
+                id="offWorkDuration"
+                type="number"
+                v-model.number="config.offWorkDuration"
+                min="10"
+                step="10"
+                required
+              />
+              <span class="hint">从下班时间开始，持续提醒的时长</span>
+            </div>
+
+            <div class="form-group">
+              <label for="offWorkMessage">提醒文字</label>
+              <textarea
+                id="offWorkMessage"
+                v-model="config.offWorkMessage"
+                rows="2"
+                placeholder="该下班了！注意休息 💼"
+                required
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
         <div class="form-actions">
           <button type="submit" class="btn-primary" :disabled="saving">
             {{ saving ? 'Saving...' : 'Save' }}

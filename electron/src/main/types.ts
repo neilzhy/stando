@@ -39,6 +39,12 @@ export interface PluginConfig {
   dndEnabled: boolean;             // Do Not Disturb enabled
   dndStartTime: string;            // DND start time (HH:MM)
   dndEndTime: string;              // DND end time (HH:MM)
+
+  // Off-work reminder configuration
+  offWorkEnabled: boolean;         // Whether off-work reminder is enabled
+  offWorkTime: string;             // Off-work time (HH:MM)
+  offWorkDuration: number;         // Reminder duration in minutes
+  offWorkMessage: string;          // Custom off-work reminder message
 }
 
 // Statistics summary for display
@@ -53,6 +59,7 @@ export interface StatsSummary {
 export const IPC_CHANNELS = {
   // Reminder actions
   REMINDER_ACTION: 'reminder-action',
+  OFF_WORK_REMINDER_ACTION: 'off-work-reminder-action',
 
   // Storage operations
   GET_STATISTICS: 'get-statistics',

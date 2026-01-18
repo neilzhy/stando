@@ -27,6 +27,15 @@ contextBridge.exposeInMainWorld('electronAPI', {
   sitDown: () => ipcRenderer.invoke(IPC_CHANNELS.SIT_DOWN),
   pause: () => ipcRenderer.invoke(IPC_CHANNELS.PAUSE),
   resume: () => ipcRenderer.invoke(IPC_CHANNELS.RESUME),
+
+  // Off-work reminder actions
+  sendOffWorkReminderAction: (action: string) => {
+    ipcRenderer.send(IPC_CHANNELS.OFF_WORK_REMINDER_ACTION, action);
+  },
+
+  onOffWorkReminderMessage: (callback: (message: string) => void) => {
+    ipcRenderer.on('off-work-reminder-message', (_event, message) => callback(message));
+  },
 });
 
 // Type definitions for TypeScript
@@ -42,6 +51,8 @@ export interface ElectronAPI {
   sitDown: () => Promise<void>;
   pause: () => Promise<void>;
   resume: () => Promise<void>;
+  sendOffWorkReminderAction: (action: string) => void;
+  onOffWorkReminderMessage: (callback: (message: string) => void) => void;
 }
 
 declare global {

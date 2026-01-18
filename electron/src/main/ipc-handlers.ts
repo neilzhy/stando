@@ -3,6 +3,7 @@ import { Storage } from './storage';
 import { Statistics } from './statistics';
 import { Config } from './config';
 import { IPC_CHANNELS, PluginConfig } from './types';
+import { WindowManager } from './windows';
 
 export function setupIpcHandlers(
   storage: Storage,
@@ -71,5 +72,17 @@ export function setupIpcHandlers(
   // Resume
   ipcMain.handle(IPC_CHANNELS.RESUME, async () => {
     onResume();
+  });
+
+  // Off-work reminder action
+  ipcMain.on(IPC_CHANNELS.OFF_WORK_REMINDER_ACTION, (_event, action: string) => {
+    WindowManager.closeOffWorkReminderWindow();
+
+    if (action === 'dismiss') {
+      // User clicked "Got it", wait for next 10-minute reminder
+    } else if (action === 'snooze') {
+      // User clicked "Wait a bit", wait for next 10-minute reminder
+      // No special handling needed, timer will trigger again in 10 minutes
+    }
   });
 }
